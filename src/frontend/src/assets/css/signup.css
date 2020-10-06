@@ -39,7 +39,8 @@ body {
 }
 .form-title {
 	font-family: "Nunito", sans-serif;
-	font-weight: 400;
+	font-weight: 600;
+	color: #42b5e6;
 }
 .form-group {
 	display: block;
@@ -73,12 +74,24 @@ input[type="number"] {
 	border: none;
 	text-align: left;
 }
-.submit-btn {
-	width: 73%;
+.agree:hover,
+.agree:focus,
+.agree:active {
+	border: none;
 	cursor: pointer;
 }
-.submit-btn:hover {
-	border-bottom: 2px solid #42b5e6;
+.submit-btn {
+	width: 40%;
+	cursor: pointer;
+	border: none;
+	background-color: #8bdcff;
+	border-radius: 100px;
+}
+.submit-btn:hover,
+.submit-btn:focus,
+.submit-btn:active {
+	border: none;
+	background-color: #42b5e6;
 }
 
 .signup-img-container {
