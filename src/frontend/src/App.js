@@ -2,7 +2,7 @@ import React from "react";
 import logo from "./logo.svg";
 import "./App.css";
 import page404 from "./components/404";
-import SignUp from "./components/signup";
+import SignUp from "./components/Signup";
 
 // function App() {
 // 	return (
