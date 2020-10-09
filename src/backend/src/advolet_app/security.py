@@ -10,4 +10,4 @@ def authenticate(email, password):
 
 def identity(payload):
     user_id = payload['identity']
-    return User.query.filter_by(id=user_id)
+    return User.query.filter_by(id=user_id).first()

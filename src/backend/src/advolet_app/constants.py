@@ -1,12 +1,18 @@
 class General():
+    BASE_DEBUG_ADDRESS = 'http://127.0.0.1:5000'
+    #FIX REQUIRED
+    BASE_PRODUCTION_ADDRESS = 'PRODUCTION ADDRESS'
+
     CONFIG_FILE = 'config.cfg'
     HASH_TYPE = 'utf-8'
+    content_type_app_json = 'application/json'
 
 
 class Route():
     BASE = '/api'
 
     SIGNUP = BASE + '/signup'
+    SIGNIN = BASE + '/signin'
 
 
 class Response_code():
