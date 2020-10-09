@@ -156,6 +156,35 @@ input[type="number"] {
 	visibility: visible;
 }
 
+.create-login-account {
+	color: #42b5e6;
+	text-decoration: none;
+	line-height: 2;
+}
+.create-login-account:hover {
+	text-decoration: underline;
+}
+.social-login {
+	padding: 20px 0px;
+	font-size: 20px;
+	color: #156181bb;
+}
+.social-login .social-icon {
+	margin: auto 20px;
+	font-size: 40px;
+}
+.social-icon:hover {
+	color: #42b5e6;
+	cursor: pointer;
+}
+.hr-line {
+	width: 80%;
+	height: 2px;
+	background-color: #15618199;
+	border: none;
+	border-radius: 50%;
+	margin-top: 20px;
+}
 @media screen and (max-width: 1005px) {
 	.signup {
 		width: 500px;

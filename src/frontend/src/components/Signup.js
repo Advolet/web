@@ -50,7 +50,7 @@ class Signup extends React.Component {
 						[val]: "Please fill this form samjhe",
 					},
 				}));
-				console.log(this.state.formErrors);
+				// console.log(this.state.formErrors);
 			}
 			// console.log(this.state);
 		});
@@ -247,9 +247,16 @@ class Signup extends React.Component {
 								name="submit-btn"
 								id="submit-btn"
 								className="form-group submit-btn"
-								value="Signup"
+								value="Sign Up"
 							/>
 						</form>
+						<hr className="hr-line" />
+						<p>
+							Already with US?{" "}
+							<a href="#" className="create-login-account">
+								Sign In instead
+							</a>
+						</p>
 					</div>
 					<div className="signup-img-container">
 						<img
@@ -257,6 +264,16 @@ class Signup extends React.Component {
 							src={signupImg}
 							alt="Advolet signup"
 						/>
+						<div className="social-login">
+							Create account with
+							<br /> <br />
+							<i
+								className="fab fa-linkedin social-icon"
+								style={{ color: "#2867B2" }}></i>
+							<i
+								className="fab fa-google social-icon"
+								style={{ color: "#d34836" }}></i>
+						</div>
 					</div>
 				</div>
 			</div>
