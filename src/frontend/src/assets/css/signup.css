@@ -172,10 +172,13 @@ input[type="number"] {
 .social-login .social-icon {
 	margin: auto 20px;
 	font-size: 40px;
+	border-radius: 50%;
+	opacity: 0.85;
 }
 .social-icon:hover {
-	color: #42b5e6;
 	cursor: pointer;
+	opacity: 1;
+	transform: scale(1.05);
 }
 .hr-line {
 	width: 80%;
@@ -186,6 +189,12 @@ input[type="number"] {
 	margin-top: 20px;
 }
 @media screen and (max-width: 1005px) {
+	.signup-container {
+		position: relative;
+		transform: translate(0%, 0%);
+		top: 0;
+		left: 0;
+	}
 	.signup {
 		width: 500px;
 		flex-direction: column;
@@ -198,6 +207,9 @@ input[type="number"] {
 	}
 	.signup-img-container {
 		width: 90%;
+		display: flex;
+		flex-wrap: nowrap;
+		flex-direction: column-reverse;
 	}
 	.tooltiptext .tooltiptextSecond {
 		right: 0%;

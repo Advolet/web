@@ -1,13 +1,7 @@
-// import { render } from "@testing-library/react";
 import React from "react";
 import "../assets/css/signup.css";
+import validate from "./Validation";
 import signupImg from "../assets/img/signup.svg";
-
-const emailRegex = RegExp(
-	/^[a-zA-Z0-9._-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/
-);
-
-const passwordRegex = RegExp(/^(?=.*[A-Za-z])(?=.*\d)[A-Za-z!@#$%^&*\d]{8,}$/);
 
 class Signup extends React.Component {
 	constructor(props) {
@@ -29,7 +23,7 @@ class Signup extends React.Component {
 		};
 	}
 
-	formValid = ({ formErrors, contact, ...rest }) => {
+	formValid = ({ formErrors, ...rest }) => {
 		let valid = true;
 
 		// validate form errors being empty
@@ -50,7 +44,6 @@ class Signup extends React.Component {
 						[val]: "Please fill this form samjhe",
 					},
 				}));
-				// console.log(this.state.formErrors);
 			}
 			// console.log(this.state);
 		});
@@ -60,7 +53,6 @@ class Signup extends React.Component {
 
 	handleSubmit = (event) => {
 		event.preventDefault();
-		// console.log("no reload again");
 		if (this.formValid(this.state)) {
 			console.log(`
         --SUBMITTING--
@@ -81,18 +73,17 @@ class Signup extends React.Component {
 					value.length < 5 ? "minimum 5 characaters required" : "";
 				break;
 			case "email":
-				formErrors.email = emailRegex.test(value)
+				formErrors.email = validate.verifyEmail(value)
 					? ""
 					: "invalid email address";
 				break;
 			case "contact":
-				formErrors.contact =
-					value.length > 0 && value.length !== 10
-						? "10 characaters required"
-						: "";
+				formErrors.contact = validate.verifyMobile(value.trim())
+					? ""
+					: "10 characaters required";
 				break;
 			case "password":
-				formErrors.password = passwordRegex.test(value)
+				formErrors.password = validate.verifyPassword(value)
 					? ""
 					: "invalid password";
 				break;
@@ -111,14 +102,16 @@ class Signup extends React.Component {
 
 	showPassword = (event) => {
 		// console.log(event.target.previousSibling);
-		event.target.previousSibling.type === "password"
-			? (event.target.previousSibling.type = "text")
-			: (event.target.previousSibling.type = "password");
+		const target = event.target;
+		const sibling = target.previousSibling;
+		sibling.type === "password"
+			? (sibling.type = "text")
+			: (sibling.type = "password");
 
-		event.target.classList.value =
-			event.target.classList.value === "far fa-eye show-eye"
+		target.classList.value =
+			target.classList.value === "fas fa-eye show-eye"
 				? "fas fa-eye-slash show-eye"
-				: "far fa-eye show-eye";
+				: "fas fa-eye show-eye";
 	};
 
 	render() {
@@ -204,7 +197,7 @@ class Signup extends React.Component {
 									onChange={this.handleChange}
 								/>
 								<i
-									className="far fa-eye show-eye"
+									className="fas fa-eye show-eye"
 									onClick={this.showPassword}></i>
 								<span className="tooltiptext">
 									<i className="fas fa-info-circle"></i>
@@ -228,7 +221,7 @@ class Signup extends React.Component {
 									onChange={this.handleChange}
 								/>
 								<i
-									className="far fa-eye show-eye"
+									className="fas fa-eye show-eye"
 									onClick={this.showPassword}></i>
 							</div>
 							<label
@@ -268,11 +261,14 @@ class Signup extends React.Component {
 							Create account with
 							<br /> <br />
 							<i
-								className="fab fa-linkedin social-icon"
+								className="fab fa-linkedin-in social-icon"
 								style={{ color: "#2867B2" }}></i>
 							<i
 								className="fab fa-google social-icon"
 								style={{ color: "#d34836" }}></i>
+							<i
+								className="fa fa-facebook social-icon"
+								style={{ color: "#3b5998" }}></i>
 						</div>
 					</div>
 				</div>

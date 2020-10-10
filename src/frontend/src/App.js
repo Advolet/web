@@ -2,8 +2,8 @@ import React from "react";
 // import logo from "./logo.svg";
 // import "./App.css";
 // import page404 from "./components/404";
-import SignUp from "./components/Signup";
-// import Signin from "./components/Signin";
+// import SignUp from "./components/Signup";
+import Signin from "./components/Signin";
 
 // function App() {
 // 	return (
@@ -26,5 +26,5 @@ import SignUp from "./components/Signup";
 // }
 // export default App;
 // export default page404;
-export default SignUp;
-// export default Signin;
+// export default SignUp;
+export default Signin;

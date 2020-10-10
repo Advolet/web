@@ -1,18 +1,29 @@
 import React from "react";
 import "../assets/css/signup.css";
 import "../assets/css/signin.css";
+import validate from "./Validation";
 import loginImg from "../assets/img/Login-bro.svg";
 
-const emailRegex = RegExp(
-	/^[a-zA-Z0-9._-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/
-);
+const validateForm = (state) => {
+	if (state.isEmail === 0) {
+		console.log("email or mobile incorrect");
+		return false;
+	} else if (state.isEmail === 1) {
+		console.log("---submitting email---");
+		return true;
+	} else if (state.isEmail === 2) {
+		console.log("---submitting mobile---");
+		return true;
+	}
+};
 
 class Signin extends React.Component {
 	constructor(props) {
 		super(props);
 
 		this.state = {
-			email: null,
+			emailOrMobile: null,
+			isEmail: 3, //0: error, 1: email, 2: mobile, 3: untouched
 			password: null,
 		};
 	}
@@ -20,32 +31,45 @@ class Signin extends React.Component {
 	handleSubmit = (event) => {
 		event.preventDefault();
 		// console.log("no reload again");
-		if (emailRegex.test(this.state.email)) {
-			console.log("----Submitting----");
-			// console.log(this.state);
+		if (validateForm(this.state)) {
+			console.log("---submitting---");
 		} else {
-			console.error("INVALID EMAIL");
+			console.error("invalid form");
 		}
+		console.log(this.state);
 	};
 
 	handleChange = (event) => {
 		event.preventDefault();
+		const { name, value } = event.target;
+		let isEmail = 0;
+		if (name === "emailOrMobile") {
+			if (validate.verifyEmail(value)) {
+				isEmail = 1;
+			} else if (validate.verifyMobile(value)) {
+				isEmail = 2;
+			}
+		}
+		// console.log(emailOrMobileError);
 		this.setState({
-			[event.target.name]: event.target.value,
+			[name]: value,
+			isEmail: isEmail,
 		});
 		// console.log(this.state);
 	};
 
 	showPassword = (event) => {
 		// console.log(event.target.previousSibling);
-		event.target.previousSibling.type === "password"
-			? (event.target.previousSibling.type = "text")
-			: (event.target.previousSibling.type = "password");
+		const target = event.target;
+		const sibling = target.previousSibling;
+		sibling.type === "password"
+			? (sibling.type = "text")
+			: (sibling.type = "password");
 
-		event.target.classList.value =
-			event.target.classList.value === "far fa-eye show-eye"
+		target.classList.value =
+			target.classList.value === "fas fa-eye show-eye"
 				? "fas fa-eye-slash show-eye"
-				: "far fa-eye show-eye";
+				: "fas fa-eye show-eye";
 	};
 
 	render() {
@@ -60,21 +84,24 @@ class Signin extends React.Component {
 							<div className="divToAddTooltip">
 								<input
 									className={
-										emailRegex.test(this.state.email) ||
-										this.state.email === null
-											? "form-group"
-											: "form-group error"
+										this.state.isEmail === 0
+											? "form-group error"
+											: "form-group"
 									}
-									name="email"
-									id="email"
-									placeholder="Email*"
+									name="emailOrMobile"
+									id="emailOrMobile"
+									placeholder="Email or Mobile number*"
 									autoFocus
 									onChange={this.handleChange}
 								/>
 								<span className="tooltiptext">
 									<i className="fas fa-info-circle"></i>
-									<span className="tooltiptextSecond">
-										don't forget @
+									<span
+										className="tooltiptextSecond"
+										style={{ minWidth: 160 + "px" }}>
+										don't forget @ in email
+										<br />
+										if using number, don't add +91 or 0
 									</span>
 								</span>
 							</div>
@@ -87,7 +114,7 @@ class Signin extends React.Component {
 									onChange={this.handleChange}
 								/>
 								<i
-									className="far fa-eye show-eye"
+									className="fas fa-eye show-eye"
 									onClick={this.showPassword}></i>
 							</div>
 							<input
@@ -98,16 +125,23 @@ class Signin extends React.Component {
 								value="Sign In"
 							/>
 						</form>
-						<hr className="hr-line" />
+						<div className="line-container">
+							<hr className="line left" />
+							OR
+							<hr className="line right" />
+						</div>
 						<div className="social-login">
-							Login with
+							Sign In with
 							<br /> <br />
 							<i
-								className="fab fa-linkedin social-icon"
+								className="fab fa-linkedin-in social-icon"
 								style={{ color: "#2867B2" }}></i>
 							<i
 								className="fab fa-google social-icon"
 								style={{ color: "#d34836" }}></i>
+							<i
+								className="fa fa-facebook social-icon"
+								style={{ color: "#3b5998" }}></i>
 						</div>
 					</div>
 					<div className="signup-img-container">
@@ -115,6 +149,7 @@ class Signin extends React.Component {
 							className="signup-img"
 							src={loginImg}
 							alt="Advolet signup"
+							style={{ maxWidth: "75%", margin: "auto" }}
 						/>
 						<p>
 							Yet not connected with US?

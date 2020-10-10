@@ -1,5 +1,23 @@
 .signup {
 	padding: 30px 10px;
 }
-
-
+.line-container {
+	display: flex;
+	align-items: flex-end;
+	font-weight: bold;
+}
+.line {
+	width: 40%;
+	height: 2px;
+	background-color: #15618199;
+	border: none;
+	margin-top: 20px;
+}
+.line.left {
+	border-top-left-radius: 50%;
+	border-bottom-left-radius: 50%;
+}
+.line.right {
+	border-top-right-radius: 50%;
+	border-bottom-right-radius: 50%;
+}
